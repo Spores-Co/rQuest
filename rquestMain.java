@@ -1,5 +1,8 @@
 
-public class rquestMain {
+public class rQuestMain 
+{
+  static player playerCharacter;
+  static int numOfTiles = 30;
 
   public static void generateMonster(monster[] monsters) 
   {
@@ -13,19 +16,63 @@ public class rquestMain {
       System.out.println(monsters[i].getInfo());
     }
   }
-  
+
+  public static void generateTiles(questTile[] tileSet, monster[] monsters, eventgood[] eventgood, eventbad[] eventbad) 
+  {
+    for (int i = 0; i < tileSet.length; i++) 
+    {
+      tileSet[i] = new questTile(monsters[i], eventbad[i], eventgood[i]);
+    }
+    for (int i = 0; i < tileSet.length; i++) {
+      System.out.println(tileSet[i].getInfo());
+    }
+  }
+  public static void generateEventGood(eventgood[] eventgood) 
+  {
+    for (int i = 0; i < eventgood.length; i++) 
+    {
+      eventgood[i] = new eventgood();
+    }
+    for (int i = 0; i < eventgood.length; i++) {
+      System.out.println(eventgood[i].getInfo());
+    }
+  }
+  public static void generateEventBad(eventbad[] eventbad) 
+  {
+    for (int i = 0; i < eventbad.length; i++) 
+    {
+      eventbad[i] = new eventbad();
+    }
+    for (int i = 0; i < eventbad.length; i++) {
+      System.out.println(eventbad[i].getInfo());
+    }
+  }
+
+
+  public static void createPlayer()
+  {
+    playerCharacter = new player();
+    System.out.println(playerCharacter.getInfo());
+  }
+
   public static boolean hasWeapon()
   {
     int rand = (int) (0 + 2 * Math.random());
-    if(rand == 1)
-    {return true;}
+    if(rand == 1){return true;}
     else{return false;}
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) 
+  {
+    createPlayer();
+    monster[] monsters = new monster[numOfTiles];
+    questTile[] tileSet = new questTile[numOfTiles];
+    eventgood[] eventgood = new eventgood[numOfTiles];
+    eventbad[] eventbad = new eventbad[numOfTiles];
 
-    monster[] monsters = new monster[10];
     generateMonster(monsters);
-
+    generateEventGood(eventgood);
+    generateEventBad(eventbad);
+    generateTiles(tileSet, monsters, eventgood, eventbad);
   }
 }
