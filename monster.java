@@ -4,11 +4,13 @@ public class monster {
     String[] firstName = { "Rhaelhall", "Fipa", "Daviecrusha", "Mythicson", "Silvacackle", "Anskelisia", "Reyesookie",
             "Morganhugia", "Iflee", "Benallopa", "Silva", "Hartrositia", "Simsensteinia", "Yosaunders", "Benalka",
             "Olakelley", "Slimerice", "Burgat", "Thudguzman", "Hammasrice", "Philaf", "Harrisrek", "Rhaelrter",
-            "Gagruel", "Murphire", "Mcdonahell", "Jikinirthy", "Strogis", "Trivent", "Ednir", "Alvenyo", "Haeghet", "Deslet" };
+            "Gagruel", "Murphire", "Mcdonahell", "Jikinirthy", "Strogis", "Trivent", "Ednir", "Alvenyo", "Haeghet", "Deslet",
+            "Crilougent", "Filevront", "Ilogre", "Drynt", "Repragir", "Ynois", "Ullegro"};
     String[] lastName = { "the parallel", "the juvenile", "the subdued", "the squalid", "the violent", "the fretful",
             "the powerful", "the wary", "the broad", "the ludicrous", "the dizzy", "the intelligent", "the grotesque",
             "the annoying", "the wealthy", "the puny", "the bizarre", "the learned", "the cumbersome", "the chilly",
-            "the resolute", "the juvinile", "the frantic", "the industrious", "the hellish", "the puzzled", "the coy", "the wise" };
+            "the resolute", "the frantic", "the industrious", "the hellish", "the puzzled", "the coy", "the wise",
+            "the devious", "the reckless", "the restless", "the stubborn", "the cruel","the couragous"};
 
     String[] speciesList = { "goblin", "hobgoblin", "rat", "kobold", "banshee", "spider", "lizard", "troll", "giant",
             "beetle", "bandit", "dragon", "bat", "snake", "bear", "slime" };
