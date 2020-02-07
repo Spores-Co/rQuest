@@ -2,7 +2,7 @@
 public class rQuestMain 
 {
   static player playerCharacter;
-  static int numOfTiles = 30;
+  static int numOfTiles = 300;
 
   public static void generateMonster(monster[] monsters, weapon[] weapons) 
   {
@@ -22,6 +22,10 @@ public class rQuestMain
     for (int i = 0; i < tileSet.length; i++) 
     {
       tileSet[i] = new questTile(monsters[i], eventbad[i], eventgood[i]);
+      while(i!=0 && tileSet[i].getType()=="shop" && tileSet[i-1].getType()=="shop")
+      {
+        tileSet[i] = new questTile(monsters[i], eventbad[i], eventgood[i]);
+      }
     }
     for (int i = 0; i < tileSet.length; i++) {
       System.out.println(tileSet[i].getInfo());
