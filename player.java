@@ -1,10 +1,9 @@
-public class player
-{
+public class player {
     String name, species;
     int health;
-    double modifier;
+    double modifier, money;
     boolean hasWeapon;
-    String[] speciesList = {"human", "orc", "elf", "gnome", "dragonborn", "dwarf"};
+    String[] speciesList = { "human", "orc", "elf", "gnome", "dragonborn", "dwarf" };
     String[] firstName = { "Rhaelhall", "Fipa", "Daviecrusha", "Mythicson", "Silvacackle", "Anskelisia", "Reyesookie",
             "Morganhugia", "Iflee", "Benallopa", "Silva", "Hartrositia", "Simsensteinia", "Yosaunders", "Benalka",
             "Olakelley", "Slimerice", "Burgat", "Thudguzman", "Hammasrice", "Philaf", "Harrisrek", "Rhaelrter",
@@ -17,43 +16,43 @@ public class player
     int lnameLength = lastName.length;
     int speciesLength = speciesList.length;
 
-    public player()
-    {
-        name = firstName[(int) (0 + fnameLength * Math.random())] + " " + lastName[(int) (0 + lnameLength * Math.random())];
+    public static double getRandomIntegerBetweenRange(double min, double max) {
+        double x = (int) (Math.random() * ((max - min) + 1)) + min;
+        return x;
+    }
+
+    public player() {
+        money = getRandomIntegerBetweenRange(20, 50);
+        name = firstName[(int) (0 + fnameLength * Math.random())] + " "
+                + lastName[(int) (0 + lnameLength * Math.random())];
         species = speciesList[(int) (0 + speciesLength * Math.random())];
 
-        if (species == "human")
-        {
+        if (species == "human") {
             health = (int) (50 + (60 * Math.random()));
             modifier = 1;
         }
 
-        if (species == "orc")
-        {
+        if (species == "orc") {
             health = (int) (60 + (70 * Math.random()));
             modifier = 1.55;
         }
 
-        if (species == "elf")
-        {
+        if (species == "elf") {
             health = (int) (40 + (50 * Math.random()));
             modifier = 1.1;
         }
 
-        if (species == "gnome")
-        {
+        if (species == "gnome") {
             health = (int) (30 + (40 * Math.random()));
             modifier = .90;
         }
 
-        if (species == "dragonborn")
-        {
+        if (species == "dragonborn") {
             health = (int) (55 + (65 * Math.random()));
             modifier = 1.5;
         }
 
-        if (species == "dwarf")
-        {
+        if (species == "dwarf") {
             health = (int) (50 + (65 * Math.random()));
             modifier = 1.25;
         }
@@ -75,6 +74,10 @@ public class player
         return modifier;
     };
 
+    public double getMoney() {
+        return money;
+    };
+
     public int setHealth(int newHealth) {
         health = newHealth;
         return newHealth;
@@ -85,15 +88,23 @@ public class player
         return newModifier;
     };
 
+    public double setMoney(double newMoney) {
+        money = newMoney;
+        return newMoney;
+    };
+
     public String setName(String newName) {
         name = newName;
         return newName;
     };
+
     public String setSpecies(String newSpecies) {
         species = newSpecies;
         return newSpecies;
     };
 
-    public String getInfo() {return "This is a "+ species + " named " + name + " with " + health + " hitpoints and a damage modifier of " + modifier + ". Has weapon: " + hasWeapon; 
+    public String getInfo() {
+        return "This player is a " + species + " named " + name + " with " + health + " hitpoints, " + money
+                + " gold, and a damage modifier of " + modifier + ". Has weapon: " + hasWeapon;
     }
 }

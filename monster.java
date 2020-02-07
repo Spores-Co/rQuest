@@ -22,10 +22,11 @@ public class monster {
     int fnameLength = firstName.length;
     int lnameLength = lastName.length;
     int speciesLength = speciesList.length;
+    weapon currentWeapon;
 
-    public monster(boolean carryingWeapon) 
+    public monster(boolean carryingWeapon, weapon weapon) 
     {
-        hasWeapon = carryingWeapon;
+        hasWeapon = false;
         name = firstName[(int) (0 + fnameLength * Math.random())] + " " + lastName[(int) (0 + lnameLength * Math.random())];
         species = speciesList[(int) (0 + speciesLength * Math.random())];
 
@@ -33,11 +34,13 @@ public class monster {
         {
             health = (int) (7 + (10 * Math.random()));
             modifier = .5;
+            hasWeapon = carryingWeapon;
         }
         if (species == "hobgoblin")
         {
             health = (int) (10 + (13 * Math.random()));
             modifier = .66;
+            hasWeapon = carryingWeapon;
         }
         if (species == "rat")
         {
@@ -48,6 +51,7 @@ public class monster {
         {
             health = (int) (8 + (11 * Math.random()));
             modifier = .75;
+            hasWeapon = carryingWeapon;
         }
         if (species == "banshee")
         {
@@ -68,6 +72,7 @@ public class monster {
         {
             health = (int) (15 + (20 * Math.random()));
             modifier = 1.15;
+            hasWeapon = carryingWeapon;
         }
         if (species == "giant")
         {
@@ -83,6 +88,7 @@ public class monster {
         {
             health = (int) (7 + (12 * Math.random()));
             modifier = 1.00;
+            hasWeapon = carryingWeapon;
         }
         if (species == "dragon")
         {
@@ -108,6 +114,10 @@ public class monster {
         {
             health = (int) (1 + (3 * Math.random()));
             modifier = .20;
+        }
+        if(hasWeapon)
+        {
+            currentWeapon = weapon;
         }
     }
 
@@ -146,6 +156,12 @@ public class monster {
         return newSpecies;
     };
 
-    public String getInfo() {return "This is a "+ species + " named " + name + " with " + health + " hitpoints and a damage modifier of " + modifier + ". Has weapon: " + hasWeapon; 
+    public String getInfo() 
+    {
+        if(hasWeapon)
+        {
+            return "This is a "+ species + " named " + name + " with " + health + " hitpoints and a damage modifier of " + modifier + ". Has weapon: " + currentWeapon.getWeaponType();
+        }
+        return "This is a "+ species + " named " + name + " with " + health + " hitpoints and a damage modifier of " + modifier + ".";
     }
 }

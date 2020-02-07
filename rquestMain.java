@@ -4,13 +4,13 @@ public class rQuestMain
   static player playerCharacter;
   static int numOfTiles = 30;
 
-  public static void generateMonster(monster[] monsters) 
+  public static void generateMonster(monster[] monsters, weapon[] weapons) 
   {
     
     for (int i = 0; i < monsters.length; i++) 
     {
       boolean hasWeapon = hasWeapon();
-      monsters[i] = new monster(hasWeapon);
+      monsters[i] = new monster(hasWeapon, weapons[i]);
     }
     for (int i = 0; i < monsters.length; i++) {
       System.out.println(monsters[i].getInfo());
@@ -48,6 +48,16 @@ public class rQuestMain
     }
   }
 
+  public static void generateWeapons(weapon[] weapons) 
+  {
+    for (int i = 0; i < weapons.length; i++) 
+    {
+      weapons[i] = new weapon();
+    }
+    for (int i = 0; i < weapons.length; i++) {
+      System.out.println(weapons[i].getInfo());
+    }
+  }
 
   public static void createPlayer()
   {
@@ -64,13 +74,15 @@ public class rQuestMain
 
   public static void main(String[] args) 
   {
-    createPlayer();
     monster[] monsters = new monster[numOfTiles];
+    weapon[] weapons = new weapon[numOfTiles];
     questTile[] tileSet = new questTile[numOfTiles];
     eventgood[] eventgood = new eventgood[numOfTiles];
     eventbad[] eventbad = new eventbad[numOfTiles];
 
-    generateMonster(monsters);
+    createPlayer();
+    generateWeapons(weapons);
+    generateMonster(monsters, weapons);
     generateEventGood(eventgood);
     generateEventBad(eventbad);
     generateTiles(tileSet, monsters, eventgood, eventbad);
