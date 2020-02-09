@@ -10,7 +10,7 @@ public class monster {
             "the powerful", "the wary", "the broad", "the ludicrous", "the dizzy", "the intelligent", "the grotesque",
             "the annoying", "the wealthy", "the puny", "the bizarre", "the learned", "the cumbersome", "the chilly",
             "the resolute", "the frantic", "the industrious", "the hellish", "the puzzled", "the coy", "the wise",
-            "the devious", "the reckless", "the restless", "the stubborn", "the cruel","the couragous", "hi"};
+            "the devious", "the reckless", "the restless", "the stubborn", "the cruel","the couragous"};
 
     String[] speciesList = { "goblin", "hobgoblin", "rat", "kobold", "banshee", "spider", "lizard", "troll", "giant",
             "beetle", "bandit", "dragon", "bat", "snake", "bear", "slime" };
