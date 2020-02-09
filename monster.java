@@ -14,7 +14,7 @@ public class monster {
 
     String[] speciesList = { "goblin", "hobgoblin", "rat", "kobold", "banshee", "spider", "lizard", "troll", "giant",
             "beetle", "bandit", "dragon", "bat", "snake", "bear", "slime" };
-
+//hi
     String name, species;
     int health;
     double modifier;
