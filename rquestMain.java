@@ -2,7 +2,7 @@
 public class rQuestMain 
 {
   static player playerCharacter;
-  static int numOfTiles = 300;
+  static int numOfTiles = 30;
 
   public static void generateMonster(monster[] monsters, weapon[] weapons) 
   {
