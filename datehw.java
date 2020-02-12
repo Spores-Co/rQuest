@@ -61,7 +61,6 @@ public class datehw{
             }
             
         System.out.println(date+" is a valid date");
-          
-
+        
     }
 }
