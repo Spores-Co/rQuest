@@ -62,6 +62,7 @@ public class datehw{
             
         System.out.println(date+" is a valid date");
         
-        
+        //looks really good, also i would suggest adding some comments, explain why a piece of code was written the way it was IF it isnt straightforward like maybe
+        //add a comment where you calculate the leap year and say "this calculates the leap year"
     }
 }
