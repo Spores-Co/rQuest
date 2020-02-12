@@ -12,9 +12,9 @@ public class datehw{
         day = Integer.parseInt(splitDate[1]);
         year = Integer.parseInt(splitDate[2]);
 
-        System.out.println(month);
-        System.out.println(day);
-        System.out.println(year);
+        System.out.println(month); //you can delete these print statements, these were only for showing you how the string gets split up*
+        System.out.println(day); //delete*
+        System.out.println(year); //delete*
         if (month>=1 && month<=12){
         }   else {
            System.out.println(date+" is not valid because "+month+" doesn't exist");
