@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class Date{
+public class datehw{
     public static void main(String[] args){
         String date;
         Scanner keyboard = new Scanner(System.in);
