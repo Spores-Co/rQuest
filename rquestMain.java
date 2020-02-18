@@ -4,6 +4,12 @@ public class rQuestMain
   static player playerCharacter;
   static int numOfTiles = 30;
 
+  public static double getRandomIntegerBetweenRange(double min, double max)
+  {
+    double x = (int)(Math.random()*((max-min)+1))+min;
+    return x;
+  }
+
   public static void generateMonster(monster[] monsters, weapon[] weapons) 
   {
     
@@ -14,6 +20,18 @@ public class rQuestMain
     }
     for (int i = 0; i < monsters.length; i++) {
       System.out.println(monsters[i].getInfo());
+    }
+  }
+
+  public static void generateShop(shop[] shops, weapon[] weapons) 
+  {
+    
+    for (int i = 0; i < shops.length; i++) 
+    {
+      shops[i] = new shop(weapons[(int)getRandomIntegerBetweenRange(0, numOfTiles-1)], weapons[(int)getRandomIntegerBetweenRange(0, numOfTiles-1)], weapons[(int)getRandomIntegerBetweenRange(0, numOfTiles-1)]);
+    }
+    for (int i = 0; i < shops.length; i++) {
+      System.out.println(shops[i].getInfo());
     }
   }
 
@@ -83,12 +101,14 @@ public class rQuestMain
     questTile[] tileSet = new questTile[numOfTiles];
     eventgood[] eventgood = new eventgood[numOfTiles];
     eventbad[] eventbad = new eventbad[numOfTiles];
+    shop[] shops = new shop[numOfTiles];
 
     createPlayer();
     generateWeapons(weapons);
     generateMonster(monsters, weapons);
     generateEventGood(eventgood);
     generateEventBad(eventbad);
+    generateShop(shops, weapons);
     generateTiles(tileSet, monsters, eventgood, eventbad);
   }
 }
