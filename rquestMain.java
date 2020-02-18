@@ -35,14 +35,14 @@ public class rQuestMain
     }
   }
 
-  public static void generateTiles(questTile[] tileSet, monster[] monsters, eventgood[] eventgood, eventbad[] eventbad) 
+  public static void generateTiles(questTile[] tileSet, monster[] monsters, eventgood[] eventgood, eventbad[] eventbad, shop[] shops) 
   {
     for (int i = 0; i < tileSet.length; i++) 
     {
-      tileSet[i] = new questTile(monsters[i], eventbad[i], eventgood[i]);
+      tileSet[i] = new questTile(monsters[i], eventbad[i], eventgood[i], shops[i]);
       while(i!=0 && tileSet[i].getType()=="shop" && tileSet[i-1].getType()=="shop")
       {
-        tileSet[i] = new questTile(monsters[i], eventbad[i], eventgood[i]);
+        tileSet[i] = new questTile(monsters[i], eventbad[i], eventgood[i], shops[i]);
       }
     }
     for (int i = 0; i < tileSet.length; i++) {
@@ -109,6 +109,6 @@ public class rQuestMain
     generateEventGood(eventgood);
     generateEventBad(eventbad);
     generateShop(shops, weapons);
-    generateTiles(tileSet, monsters, eventgood, eventbad);
+    generateTiles(tileSet, monsters, eventgood, eventbad, shops);
   }
 }

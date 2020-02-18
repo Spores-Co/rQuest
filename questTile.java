@@ -7,17 +7,19 @@ public class questTile
     monster encounter;
     eventgood good;
     eventbad bad;
+    shop shop;
 
     public static double getRandomIntegerBetweenRange(double min, double max){
         double x = (int)(Math.random()*((max-min)+1))+min;
         return x;
     }
 
-    public questTile(monster monster, eventbad eventbad, eventgood eventgood)
+    public questTile(monster monster, eventbad eventbad, eventgood eventgood, shop newShop)
     {
         encounter = null;
         bad = null;
         good = null;
+        shop = null;
         tileSelector = getRandomIntegerBetweenRange(1, 100);
 
         if(tileSelector>0&&tileSelector<61)
@@ -28,6 +30,7 @@ public class questTile
         if(tileSelector>60&&tileSelector<71)
         {
             tileType = "shop";
+            shop = newShop;
         }
         if(tileSelector>70&&tileSelector<86)
         {
@@ -72,6 +75,10 @@ public class questTile
         if(good != null)
         {
             return "This tile is a "+ tileType + " with the event: " + good.getEvent(); 
+        }
+        if(shop != null)
+        {
+            return "This tile is a "+ tileType + " and " + shop.getInfo(); 
         }
         return "This tile is a "+ tileType;
     }
