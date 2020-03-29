@@ -1,69 +1,71 @@
 import java.util.Scanner;
 
-class palendrome
+class Palendrome
 {
     static Scanner keyboard = new Scanner(System.in);
     static char[] A;
     static char[] inputArray;
     static String input;
+    static String lcNoPeriods;
     static char used;
     static int length;
-    static boolean loop = true;
+
+    public Palendrome(){}
    
-    public static boolean isPalendrome(char[] A, int used)
-    {
-        for (used = 0; used < (length/2); used++) 
-        {
-            if (A[used] != A[length - used - 1]) 
-            {
+    public static boolean isPalendrome(char[] A, int used){
+        
+        for (used = 0; used < (length/2); used++) {
+            if (A[used] != A[length - used - 1]) {
                 return false;
             }
         }
+
         return true;
     }
 
-    public static void main(String[] args) 
-  {
-    while(loop)
-    {
-    System.out.print("Enter palendrome: ");
-    input = keyboard.nextLine();
-    //System.out.println(input);
+    public static boolean repeat(){
+    
+        System.out.print("Would you like to check another? Enter Yes or No: ");
+        String answer = keyboard.nextLine();
+
+        if(answer.equalsIgnoreCase("No")){
+            System.out.print("Program ending. Thank you!");
+            System.exit(0);
+        }
+
+        return true;
+    }
+
+    public static void main(String[] args) {
+
+    do{
+
+    System.out.print("Enter word or sentence terminated with a period to test if it's a palindrome: ");
+        input = keyboard.nextLine();
+
     String noSpaces = input.replaceAll(" ", "");
-    //System.out.println(noSpaces);
     String noPeriods = noSpaces.replace(".", "");
-    length = noPeriods.length();
-    //System.out.println(noPeriods);
+    lcNoPeriods = noPeriods.toLowerCase();
+    length = lcNoPeriods.length();
+    
     A = new char[length];
     inputArray = new char[length];
     
-    for(int i=0; i<length; i++)
-    {
-        inputArray[i] = noPeriods.charAt(i);
+    for(int i=0; i<length; i++){
+        inputArray[i] = lcNoPeriods.charAt(i);
     } 
 
-    for(int i=0; i<length; i++)
-    {
+    for(int i=0; i<length; i++){
         A[i] = inputArray[i];
-      
     }
 
-    /*for(int i=0; i<length; i++)
-    {
-        System.out.println(A[i]);
-    } */
-   
-        if(!isPalendrome(A, used))
-        { System.out.println("FALSE");}
-        else{ System.out.println("TRUE");}
-        System.out.print("Would you like to play again? Enter Y or N: ");
-        String answer = keyboard.nextLine();
-        if(answer=="N")
-        {
-            System.out.print("Program ending. Thank you!");
-            break;
+    if(!isPalendrome(A, used)){
+        System.out.println("\""+input+"\""+" is not a palindrome.");
+        }else{ 
+            System.out.println("\""+input+"\""+" is a palindrome.");
         }
-    }
+
+    }while(repeat());
     
   }
 
