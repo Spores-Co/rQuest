@@ -24,12 +24,12 @@ public class questTile
         shop = null;
         tileSelector = getRandomIntegerBetweenRange(1, 100);
 
-        if(tileSelector>0&&tileSelector<21)
-        {
+        if(tileSelector>0&&tileSelector<16) //these if statements have to equal 100 in total. also, sorry future me but for some reason i wanted to use only
+        {                                   // less than and greater than, not equal to... maybe ill fix it one day
             tileType = "encounter";
             encounter = monster;
         }
-        if(tileSelector>20&&tileSelector<41)
+        if(tileSelector>15&&tileSelector<41)
         {
             tileType = "event-neutral";
             neutral = eventneutral;
