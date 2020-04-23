@@ -1,12 +1,13 @@
 public class questTile
 {
-    String[] tileList = {"encounter", "event-good", "event-bad", "shop"};
+    String[] tileList = {"encounter", "event-good", "event-bad", "event-neutral", "shop"};
     String tileType;
     int tileLength = tileList.length;
     double tileSelector;
     monster encounter;
     eventgood good;
     eventbad bad;
+    eventneutral neutral;
     shop shop;
 
     public static double getRandomIntegerBetweenRange(double min, double max){
@@ -14,20 +15,26 @@ public class questTile
         return x;
     }
 
-    public questTile(monster monster, eventbad eventbad, eventgood eventgood, shop newShop)
+    public questTile(monster monster, eventbad eventbad, eventgood eventgood, eventneutral eventneutral, shop newShop)
     {
         encounter = null;
         bad = null;
         good = null;
+        neutral = null;
         shop = null;
         tileSelector = getRandomIntegerBetweenRange(1, 100);
 
-        if(tileSelector>0&&tileSelector<61)
+        if(tileSelector>0&&tileSelector<21)
         {
             tileType = "encounter";
             encounter = monster;
         }
-        if(tileSelector>60&&tileSelector<71)
+        if(tileSelector>20&&tileSelector<41)
+        {
+            tileType = "event-neutral";
+            neutral = eventneutral;
+        }
+        if(tileSelector>40&&tileSelector<71)
         {
             tileType = "shop";
             shop = newShop;
@@ -75,6 +82,10 @@ public class questTile
         if(good != null)
         {
             return "This tile is a "+ tileType + " with the event: " + good.getEvent(); 
+        }
+        if(neutral != null)
+        {
+            return "This tile is a "+ tileType + " with the event: " + neutral.getEvent(); 
         }
         if(shop != null)
         {
