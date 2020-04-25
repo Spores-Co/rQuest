@@ -1,3 +1,5 @@
+
+
 public class PigLatin{
   
     public String toPig(String inEnglish){
@@ -29,26 +31,30 @@ public class PigLatin{
     String newSentence = "";
 
 
-    for(String wordPig : wordsPig){
-            wordPig = wordPig.replace("-", "");
-            int indexWords = wordPig.length() - 1;
-            int indexWord = indexWords;
-            char lastLetters = wordPig.charAt(indexWord);
-            char lastLetter = lastLetters;
-            wordPig = wordPig.substring(lastLetter);
-            System.out.println(wordPig);
-    
-     if( wordPig.endsWith("yay")){
+    for(String wordPig : wordsPig)
+    {
+        wordPig = wordPig.replace("-", "");
+   
+    }
+        for(int i=0;i<wordsPig.length;i++)
+        {
+            String wordToFix = wordsPig[i];
 
-            newSentence += wordPig.replace("yay", " ");
-            
-        }else{
-            newSentence += wordPig.replace("ay", " ");
+            if( wordToFix.endsWith("yay")){
+
+                wordToFix= wordToFix.replace("yay", "");
+                
+            }else{
+                wordToFix = wordToFix.replace("ay", "");
+            } 
+            char lastLetter = wordToFix.charAt(wordToFix.length()-1);
+            System.out.println(lastLetter);
+            wordToFix = lastLetter + wordToFix.substring(0, wordToFix.length()-1) + " ";
+            newSentence += wordToFix;
         }
-        inPigLatin = newSentence;
-            }
+            inPigLatin = newSentence;
             return inPigLatin;
-        }
+    }
         
 
     public static void main(String args[]) {
