@@ -1,119 +1,121 @@
 
 public class monster {
 
-    String[] firstName = { "Rhaelhall", "Fipa", "Daviecrusha", "Mythicson", "Silvacackle", "Anskelisia", "Reyesookie",
-            "Morganhugia", "Iflee", "Benallopa", "Silva", "Hartrositia", "Simsensteinia", "Yosaunders", "Benalka",
-            "Olakelley", "Slimerice", "Burgat", "Thudguzman", "Hammasrice", "Philaf", "Harrisrek", "Rhaelrter",
-            "Gagruel", "Murphire", "Mcdonahell", "Jikinirthy", "Strogis", "Trivent", "Ednir", "Alvenyo", "Haeghet", "Deslet",
-            "Crilougent", "Filevront", "Ilogre", "Drynt", "Repragir", "Ynois", "Ullegro"};
-    String[] lastName = { "the parallel", "the juvenile", "the subdued", "the squalid", "the violent", "the fretful",
-            "the powerful", "the wary", "the broad", "the ludicrous", "the dizzy", "the intelligent", "the grotesque",
-            "the annoying", "the wealthy", "the puny", "the bizarre", "the learned", "the cumbersome", "the chilly",
-            "the resolute", "the frantic", "the industrious", "the hellish", "the puzzled", "the coy", "the wise",
-            "the devious", "the reckless", "the restless", "the stubborn", "the cruel","the couragous"};
-
-    String[] speciesList = { "goblin", "hobgoblin", "rat", "kobold", "banshee", "spider", "lizard", "troll", "giant",
-            "beetle", "bandit", "dragon", "bat", "snake", "bear", "slime" };
-
     String name, species;
     int health;
-    double modifier;
+    double modifier, agility;
     boolean hasWeapon;
-    int fnameLength = firstName.length;
-    int lnameLength = lastName.length;
-    int speciesLength = speciesList.length;
+    int fnameLength = rquestMain.firstName.length;
+    int lnameLength = rquestMain.lastName.length;
+    int monsterSpeciesLength = rquestMain.monsterSpeciesList.length;
     weapon currentWeapon;
 
     public monster(boolean carryingWeapon, weapon weapon) 
     {
         hasWeapon = false;
-        name = firstName[(int) (0 + fnameLength * Math.random())] + " " + lastName[(int) (0 + lnameLength * Math.random())];
-        species = speciesList[(int) (0 + speciesLength * Math.random())];
+        name = rquestMain.firstName[(int) (0 + fnameLength * Math.random())] + " " + rquestMain.lastName[(int) (0 + lnameLength * Math.random())];
+        species = rquestMain.monsterSpeciesList[(int) (0 + monsterSpeciesLength * Math.random())];
 
         if (species == "goblin")
         {
             health = (int) (7 + (10 * Math.random()));
             modifier = .5;
             hasWeapon = carryingWeapon;
+            agility = .75;
         }
         if (species == "hobgoblin")
         {
             health = (int) (10 + (13 * Math.random()));
             modifier = .66;
             hasWeapon = carryingWeapon;
+            agility = .7;
         }
         if (species == "rat")
         {
             health = (int) (3 + (7 * Math.random()));
             modifier = .33;
+            agility = 2;
         }
         if (species == "kobold")
         {
             health = (int) (8 + (11 * Math.random()));
             modifier = .75;
             hasWeapon = carryingWeapon;
+            agility = .5;
         }
         if (species == "banshee")
         {
             health = (int) (5 + (8 * Math.random()));
             modifier = .8;
+            agility = 1.75;
         }
         if (species == "spider")
         {
             health = (int) (5 + (7 * Math.random()));
             modifier = .8;
+            agility = 2;
         }
         if (species == "lizard")
         {
             health = (int) (5 + (10 * Math.random()));
             modifier = .50;
+            agility = 1;
         }
         if (species == "troll")
         {
             health = (int) (15 + (20 * Math.random()));
             modifier = 1.15;
             hasWeapon = carryingWeapon;
+            agility = .75;
         }
         if (species == "giant")
         {
             health = (int) (20 + (25 * Math.random()));
             modifier = 2.50;
+            agility = .5;
         }
         if (species == "beetle")
         {
             health = (int) (4 + (7 * Math.random()));
             modifier = .50;
+            agility = 1.5;
         }
         if (species == "bandit")
         {
             health = (int) (7 + (12 * Math.random()));
             modifier = 1.00;
             hasWeapon = carryingWeapon;
+            agility = 1.5;
         }
         if (species == "dragon")
         {
             health = (int) (20 + (30 * Math.random()));
             modifier = 3.00;
+            agility = 1;
         }
         if (species == "bat")
         {
             health = (int) (2 + (4 * Math.random()));
             modifier = .15;
+            agility = 3;
         }
         if (species == "snake")
         {
             health = (int) (5 + (6 * Math.random()));
             modifier = .50;
+            agility = 2;
         }
         if (species == "bear")
         {
             health = (int) (13 + (16 * Math.random()));
             modifier = 2.00;
+            agility = .5;
         }
         if (species == "slime")
         {
             health = (int) (1 + (3 * Math.random()));
             modifier = .20;
+            agility = 1;
         }
         if(hasWeapon)
         {
@@ -135,6 +137,15 @@ public class monster {
 
     public double getModifier() {
         return modifier;
+    };
+
+    public double getAgility() {
+        return agility;
+    };
+
+    public int setAgility(int newAgility) {
+        health = newAgility;
+        return newAgility;
     };
 
     public int setHealth(int newHealth) {
@@ -160,8 +171,8 @@ public class monster {
     {
         if(hasWeapon)
         {
-            return "This is a "+ species + " named " + name + " with " + health + " hitpoints and a damage modifier of " + modifier + ". Has weapon: " + currentWeapon.getWeaponType();
+            return "This is a "+ species + " named " + name + " with " + health + " hitpoints, " + agility + " agility, and a damage modifier of " + modifier + ". Has weapon: " + currentWeapon.getWeaponType();
         }
-        return "This is a "+ species + " named " + name + " with " + health + " hitpoints and a damage modifier of " + modifier + ".";
+        return "This is a "+ species + " named " + name + " with " + health + " hitpoints, " + agility + " agility, and a damage modifier of " + modifier + ".";
     }
 }
