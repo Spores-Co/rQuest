@@ -4,6 +4,10 @@ public class rquestMain
 {
   static player playerCharacter;
   static int numOfTiles = 30;
+  static weapon[] weapons = new weapon[numOfTiles];
+  static String encounterInfo;
+  static String[] healEventText = { "You trip over a half-consumed healing potion and decide to drink it. ", "As you walk down the path, you notice a bush with fruit growing from it. Do you eat the fruit? "};
+  static String[] itemEventText = { "You stumble over something while walking down the road. Upon further inspection, you notice it's a ", "You come across a dead body. You notice a weapon still in its sheath. Upon inspection, you identify it as a "};
   static questTile[] tileSet = new questTile[numOfTiles];
   static String[] speciesList = { "human", "orc", "elf", "gnome", "dragonborn", "dwarf" };
   static String[] monsterSpeciesList = { "goblin", "hobgoblin", "rat", "kobold", "banshee", "spider", "lizard", "troll", "giant",
@@ -58,9 +62,9 @@ public class rquestMain
         tileSet[i] = new questTile(monsters[i], eventbad[i], eventgood[i], eventneutral[i], shops[i]);
       }
     }
-    /*for (int i = 0; i < tileSet.length; i++) {
+    for (int i = 0; i < tileSet.length; i++) {
       System.out.println(tileSet[i].getInfo());
-    }*/
+    }
   }
   public static void generateEventGood(eventgood[] eventgood) 
   {
@@ -131,7 +135,7 @@ public class rquestMain
             int health = tileSet[i].encounter.getHealth();
             double modifier = tileSet[i].encounter.getModifier();
             double agility = tileSet[i].encounter.getAgility();
-            String encounterInfo = "You encounter a " + species + " named " + name + " with " + health + " health!";
+            encounterInfo = "You encounter a " + species + " named " + name + " with " + health + " health!";
             if(tileSet[i].encounter.hasWeapon())
             {
               String weaponType = tileSet[i].encounter.getWeapon().getWeaponType();
@@ -220,6 +224,75 @@ public class rquestMain
 
           if (tileSet[i].getType() == "event-good")
           {
+            tileSet[i].good.setVisited(true);
+            String eventType = tileSet[i].good.getEvent();
+            if(eventType.equals("heal"))
+            {
+              int selector = (int)getRandomIntegerBetweenRange(0, healEventText.length-1);
+              encounterInfo = healEventText[selector];
+              if(selector == 1) //for choice events, add || for new events
+              {
+                System.out.print(encounterInfo);
+                Scanner cin = new Scanner(System.in);
+                String userChoice = cin.nextLine();
+                if(userChoice.equals("Y"))
+                {
+                  encounterInfo = "You decide to. ";
+                  int amountToHeal = (int)getRandomIntegerBetweenRange(0, 15);
+                  int newPlayerHealth = playerCharacter.getHealth() + amountToHeal;
+                  playerCharacter.setHealth(newPlayerHealth);
+                  encounterInfo += "You heal " + amountToHeal + " health! You now have " + playerCharacter.getHealth() + " health!";
+                  System.out.println(encounterInfo);
+                }
+                if(userChoice.equals("N"))
+                {
+                  encounterInfo = "You decide not to. You walk away.";
+                  System.out.println(encounterInfo);
+                }
+              }
+              else
+              {
+                int amountToHeal = (int)getRandomIntegerBetweenRange(0, 15);
+                int newPlayerHealth = playerCharacter.getHealth() + amountToHeal;
+                playerCharacter.setHealth(newPlayerHealth);
+                encounterInfo += "You heal " + amountToHeal + " health! You now have " + playerCharacter.getHealth() + " health!";
+                System.out.println(encounterInfo);
+              }
+
+            }
+            if(eventType.equals("item"))
+            {
+              int selector = (int)getRandomIntegerBetweenRange(0, itemEventText.length-1);
+              weapon eventWeapon = weapons[i];
+              int damage = (int)eventWeapon.getDamage();
+              int lowerDamage = damage - (int)getRandomIntegerBetweenRange(0, 3);
+              int upperDamage = damage + (int)getRandomIntegerBetweenRange(1, 3);
+              encounterInfo = itemEventText[selector] + eventWeapon.getWeaponType() +". You speculate the weapon could do about " + lowerDamage + " to " + upperDamage + " damage. Do you take the " + eventWeapon.getWeaponType() + "? ";
+              System.out.print(encounterInfo);
+              Scanner cin = new Scanner(System.in);
+              String userChoice = cin.nextLine();
+              if(userChoice.equals("Y"))
+              {
+                encounterInfo = "You decide to take the " + eventWeapon.getWeaponType() + ".";
+                if(playerCharacter.hasWeapon)
+                {
+                  encounterInfo += " You drop your old " + playerCharacter.getWeapon().getWeaponType() + ".";
+                }
+                playerCharacter.setWeapon(eventWeapon);
+                System.out.println(encounterInfo);
+              }
+              if(userChoice.equals("N"))
+              {
+                encounterInfo = "You decide not to take the " + eventWeapon.getWeaponType() + ". You walk away.";
+                System.out.println(encounterInfo);
+              }
+            }
+            if(eventType.equals("powerup"))
+            {
+              
+              
+            }
+
 
           }
 
@@ -238,7 +311,6 @@ public class rquestMain
   public static void main(String[] args) 
   {
     monster[] monsters = new monster[numOfTiles];
-    weapon[] weapons = new weapon[numOfTiles];
     eventgood[] eventgood = new eventgood[numOfTiles];
     eventbad[] eventbad = new eventbad[numOfTiles];
     eventneutral[] eventneutral = new eventneutral[numOfTiles];

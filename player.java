@@ -93,6 +93,11 @@ public class player {
         return newHealth;
     };
 
+    public weapon setWeapon(weapon newWeapon) {
+        currentWeapon = newWeapon;
+        return newWeapon;
+    };
+
     public weapon getWeapon() {
         return currentWeapon;
     };
