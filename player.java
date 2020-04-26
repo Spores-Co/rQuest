@@ -3,6 +3,7 @@ public class player {
     int health;
     double modifier, money, armor, agility;
     boolean hasWeapon;
+    weapon currentWeapon;
    
     int fnameLength = rquestMain.firstName.length;
     int lnameLength = rquestMain.lastName.length;
@@ -18,6 +19,11 @@ public class player {
         name = rquestMain.firstName[(int) (0 + fnameLength * Math.random())] + " "
                 + rquestMain.lastName[(int) (0 + lnameLength * Math.random())];
         species = rquestMain.speciesList[(int) (0 + speciesLength * Math.random())];
+        currentWeapon = new weapon();
+        currentWeapon.setWeaponType("fists");
+        currentWeapon.setDamage(getRandomIntegerBetweenRange(3, 5));
+        currentWeapon.setSize("medium");
+        currentWeapon.setCost(0);
 
         //pretty sure modifier is for damage, kinda forgot it's been a while
         //tradeoff for more damage is less agility
@@ -87,6 +93,10 @@ public class player {
         return newHealth;
     };
 
+    public weapon getWeapon() {
+        return currentWeapon;
+    };
+
     public int setAgility(int newAgility) {
         health = newAgility;
         return newAgility;
@@ -110,6 +120,15 @@ public class player {
     public String setSpecies(String newSpecies) {
         species = newSpecies;
         return newSpecies;
+    };
+
+    public boolean setHasWeapon(boolean newHasWeapon) {
+        hasWeapon= newHasWeapon;
+        return hasWeapon;
+    };
+
+    public boolean getHasWeapon() {
+        return hasWeapon;
     };
 
     public String getInfo() {

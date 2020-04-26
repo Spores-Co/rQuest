@@ -1,8 +1,10 @@
+import java.util.Scanner;
 
 public class rquestMain 
 {
   static player playerCharacter;
   static int numOfTiles = 30;
+  static questTile[] tileSet = new questTile[numOfTiles];
   static String[] speciesList = { "human", "orc", "elf", "gnome", "dragonborn", "dwarf" };
   static String[] monsterSpeciesList = { "goblin", "hobgoblin", "rat", "kobold", "banshee", "spider", "lizard", "troll", "giant",
             "beetle", "bandit", "dragon", "bat", "snake", "bear", "slime" };
@@ -29,10 +31,10 @@ public class rquestMain
       boolean hasWeapon = hasWeapon();
       monsters[i] = new monster(hasWeapon, weapons[i]);
     }
-    for (int i = 0; i < monsters.length; i++) {
-      System.out.println(monsters[i].getInfo());
+    /*for (int i = 0; i < monsters.length; i++) {
+      System.out.println(monsters[i].getInfo());*/
     }
-  }
+  //}
 
   public static void generateShop(shop[] shops, weapon[] weapons) 
   {
@@ -41,10 +43,10 @@ public class rquestMain
     {
       shops[i] = new shop(weapons[(int)getRandomIntegerBetweenRange(0, numOfTiles-1)], weapons[(int)getRandomIntegerBetweenRange(0, numOfTiles-1)], weapons[(int)getRandomIntegerBetweenRange(0, numOfTiles-1)]);
     }
-    for (int i = 0; i < shops.length; i++) {
-      System.out.println(shops[i].getInfo());
+    /*for (int i = 0; i < shops.length; i++) {
+      System.out.println(shops[i].getInfo());*/
     }
-  }
+  //}
 
   public static void generateTiles(questTile[] tileSet, monster[] monsters, eventgood[] eventgood, eventbad[] eventbad, eventneutral[] eventneutral, shop[] shops) 
   {
@@ -56,9 +58,9 @@ public class rquestMain
         tileSet[i] = new questTile(monsters[i], eventbad[i], eventgood[i], eventneutral[i], shops[i]);
       }
     }
-    for (int i = 0; i < tileSet.length; i++) {
+    /*for (int i = 0; i < tileSet.length; i++) {
       System.out.println(tileSet[i].getInfo());
-    }
+    }*/
   }
   public static void generateEventGood(eventgood[] eventgood) 
   {
@@ -66,30 +68,30 @@ public class rquestMain
     {
       eventgood[i] = new eventgood();
     }
-    for (int i = 0; i < eventgood.length; i++) {
-      System.out.println(eventgood[i].getInfo());
+    /*for (int i = 0; i < eventgood.length; i++) {
+      System.out.println(eventgood[i].getInfo());*/
     }
-  }
+ // }
   public static void generateEventNeutral(eventneutral[] eventneutral) 
   {
     for (int i = 0; i < eventneutral.length; i++) 
     {
       eventneutral[i] = new eventneutral();
     }
-    for (int i = 0; i < eventneutral.length; i++) {
-      System.out.println(eventneutral[i].getInfo());
+    /*for (int i = 0; i < eventneutral.length; i++) {
+      System.out.println(eventneutral[i].getInfo());*/
     }
-  }
+  //}
   public static void generateEventBad(eventbad[] eventbad) 
   {
     for (int i = 0; i < eventbad.length; i++) 
     {
       eventbad[i] = new eventbad();
     }
-    for (int i = 0; i < eventbad.length; i++) {
-      System.out.println(eventbad[i].getInfo());
+    /*for (int i = 0; i < eventbad.length; i++) {
+      System.out.println(eventbad[i].getInfo());*/
     }
-  }
+  //}
 
   public static void generateWeapons(weapon[] weapons) 
   {
@@ -97,10 +99,10 @@ public class rquestMain
     {
       weapons[i] = new weapon();
     }
-    for (int i = 0; i < weapons.length; i++) {
-      System.out.println(weapons[i].getInfo());
+   /* for (int i = 0; i < weapons.length; i++) {
+      System.out.println(weapons[i].getInfo());*/
     }
-  }
+  //}
 
   public static void createPlayer()
   {
@@ -115,11 +117,128 @@ public class rquestMain
     else{return false;}
   }
 
+  public static void playGame(questTile[] tileSet)
+  {
+      for (int i = 0; i < tileSet.length; i++) 
+      {
+          //System.out.println(tileSet[i].getInfo());
+
+          if (tileSet[i].getType() == "encounter")
+          {
+            boolean encounterComplete = false;
+            String species = tileSet[i].encounter.getSpecies();
+            String name = tileSet[i].encounter.getName();
+            int health = tileSet[i].encounter.getHealth();
+            double modifier = tileSet[i].encounter.getModifier();
+            double agility = tileSet[i].encounter.getAgility();
+            String encounterInfo = "You encounter a " + species + " named " + name + " with " + health + " health!";
+            if(tileSet[i].encounter.hasWeapon())
+            {
+              String weaponType = tileSet[i].encounter.getWeapon().getWeaponType();
+              encounterInfo += " They seem to be holding a " + weaponType + "!";
+            }
+            while(!encounterComplete)
+            {
+              encounterInfo += " What will you do?";
+              Scanner cin = new Scanner(System.in);
+              System.out.print(encounterInfo + "\nEnter your action: F = fight, R = run: ");
+              String userChoice = cin.nextLine();
+              System.out.println("Player input = " + userChoice);
+              System.out.println("Player agility = " + playerCharacter.getAgility());
+  
+              if(userChoice.equals("R"))
+              {
+                double runFromBattle = getRandomIntegerBetweenRange(1, 10) * playerCharacter.getAgility();
+                System.out.println("Player runFromBattle double = " + runFromBattle);
+                if(runFromBattle >= 10)
+                {
+                  encounterInfo = "You got away!";
+                  break;
+                }
+                else
+                {
+                  encounterInfo = "You failed to run away!";
+                }
+              }
+              if(userChoice.equals("F"))
+              {
+                 encounterInfo = "You swing your " + playerCharacter.getWeapon().getWeaponType() + " at the " + species + "!";
+                 System.out.println(encounterInfo);
+                 double enemyDodge = getRandomIntegerBetweenRange(1, 10) * agility;
+                 System.out.println("Enemy dodge = " + enemyDodge);
+                 if(enemyDodge >= 8)
+                 {
+                   encounterInfo = "You miss!";
+                 }
+                 else
+                 {
+                    int damageDone = (int)(playerCharacter.getWeapon().getDamage() * playerCharacter.getModifier());
+                    encounterInfo = "You hit! You do " + damageDone + " damage to " + name + "!";
+                    System.out.println(encounterInfo);
+                    health -= damageDone;
+                    System.out.println("They have " + health + " health left!");
+                    
+                    if(health <= 0)
+                  {
+                    encounterInfo = "You defeated " + name + "!";
+                    System.out.println(encounterInfo);
+                    break;
+                  }
+                 }
+              }
+              double playerDodge = getRandomIntegerBetweenRange(1, 10) * playerCharacter.getAgility();
+            System.out.println("Player dodge = " + playerDodge);
+            if(playerDodge >= 8)
+            {
+              encounterInfo = "Enemy miss!";
+            }
+            else
+            {
+               int damageDone = (int)(tileSet[i].encounter.getWeapon().getDamage() * modifier);
+               encounterInfo = "Enemy hit! They do " + damageDone + " damage to you!";
+               int playerHealth = playerCharacter.getHealth();
+               playerHealth -= damageDone;
+               playerCharacter.setHealth(playerHealth); 
+               System.out.println("You have " + playerHealth + " health left!");
+               
+               if(health <= 0)
+             {
+               encounterInfo = "You have been defeated!";
+               System.out.println(encounterInfo);
+               break;
+             }
+            }
+            }
+            
+            
+          }
+
+          if (tileSet[i].getType() == "event-neutral")
+          {
+
+          }
+
+          if (tileSet[i].getType() == "event-good")
+          {
+
+          }
+
+          if (tileSet[i].getType() == "event-bad")
+          {
+
+          }
+
+          if (tileSet[i].getType() == "shop")
+          {
+
+          }
+      }
+  }
+
   public static void main(String[] args) 
   {
     monster[] monsters = new monster[numOfTiles];
     weapon[] weapons = new weapon[numOfTiles];
-    questTile[] tileSet = new questTile[numOfTiles];
     eventgood[] eventgood = new eventgood[numOfTiles];
     eventbad[] eventbad = new eventbad[numOfTiles];
     eventneutral[] eventneutral = new eventneutral[numOfTiles];
@@ -133,5 +252,6 @@ public class rquestMain
     generateEventNeutral(eventneutral);
     generateShop(shops, weapons);
     generateTiles(tileSet, monsters, eventgood, eventbad, eventneutral, shops);
+    playGame(tileSet);
   }
 }
