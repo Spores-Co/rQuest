@@ -1,7 +1,7 @@
 public class player {
     String name, species;
-    int health;
-    double modifier, money, armor, agility;
+    int health, money;
+    double modifier, armor, agility;
     boolean hasWeapon;
     weapon currentWeapon;
    
@@ -15,7 +15,7 @@ public class player {
     }
 
     public player() {
-        money = getRandomIntegerBetweenRange(20, 50);
+        money = (int)getRandomIntegerBetweenRange(20, 50);
         name = rquestMain.firstName[(int) (0 + fnameLength * Math.random())] + " "
                 + rquestMain.lastName[(int) (0 + lnameLength * Math.random())];
         species = rquestMain.speciesList[(int) (0 + speciesLength * Math.random())];
@@ -80,7 +80,7 @@ public class player {
         return modifier;
     };
 
-    public double getMoney() {
+    public int getMoney() {
         return money;
     };
 
@@ -102,8 +102,8 @@ public class player {
         return currentWeapon;
     };
 
-    public int setAgility(int newAgility) {
-        health = newAgility;
+    public double setAgility(double newAgility) {
+        agility = newAgility;
         return newAgility;
     };
 
@@ -112,9 +112,9 @@ public class player {
         return newModifier;
     };
 
-    public double setMoney(double newMoney) {
+    public int setMoney(int newMoney) {
         money = newMoney;
-        return newMoney;
+        return money;
     };
 
     public String setName(String newName) {
