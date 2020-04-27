@@ -3,7 +3,7 @@ import java.math.*;
 
 public class rquestMain {
   static player playerCharacter;
-  static int numOfTiles = 30;
+  static int numOfTiles = 300;
   static weapon[] weapons = new weapon[numOfTiles];
   static String encounterInfo;
   static String[] healEventText = { "You trip over a half-consumed healing potion and decide to drink it. ",
@@ -15,6 +15,8 @@ public class rquestMain {
       "You see a small opening near a cliff as you are walking. In order to further investigate, you quicky - yet clumsily - crawl inside. About halfway through, you scrape your arm on some stragely sharp glowing moss and decide to crawl out. As you exit the opening, you feel ",
       "You meet a traveler along the path you are walking down. They tell you they can improve a random stat for ",
       "As you walk through a rough patch of forest, you step on a crumpled up piece of paper. Do you read the paper? " };
+  static String[] flavorEventText = { "You look around you and take in the scenery.",
+      "You feel the breeze blow through your hair." };
   static questTile[] tileSet = new questTile[numOfTiles];
   static String[] speciesList = { "human", "orc", "elf", "gnome", "dragonborn", "dwarf" };
   static String[] monsterSpeciesList = { "goblin", "hobgoblin", "rat", "kobold", "banshee", "spider", "lizard", "troll",
@@ -149,6 +151,7 @@ public class rquestMain {
       // System.out.println(tileSet[i].getInfo());
 
       if (tileSet[i].getType() == "encounter") {
+        tileSet[i].encounter.setVisited(true);
         boolean encounterComplete = false;
         String species = tileSet[i].encounter.getSpecies();
         String name = tileSet[i].encounter.getName();
@@ -160,8 +163,10 @@ public class rquestMain {
           String weaponType = tileSet[i].encounter.getWeapon().getWeaponType();
           encounterInfo += " They seem to be holding a " + weaponType + "!";
         }
+        System.out.println(encounterInfo);
         while (!encounterComplete) {
-          encounterInfo += " What will you do?";
+          
+          encounterInfo = "What will you do?";
           Scanner cin = new Scanner(System.in);
           System.out.print(encounterInfo + "\nEnter your action: F = fight, R = run: ");
           String userChoice = cin.nextLine();
@@ -186,13 +191,14 @@ public class rquestMain {
             System.out.println("Enemy dodge = " + enemyDodge);
             if (enemyDodge >= 8) {
               encounterInfo = "You miss!";
+              System.out.println(encounterInfo);
             } else {
               int damageDone = (int) (playerCharacter.getWeapon().getDamage() * playerCharacter.getModifier());
               encounterInfo = "You hit! You do " + damageDone + " damage to " + name + "!";
               System.out.println(encounterInfo);
               health -= damageDone;
               System.out.println("They have " + health + " health left!");
-
+              
               if (health <= 0) {
                 encounterInfo = "You defeated " + name + "!";
                 System.out.println(encounterInfo);
@@ -204,26 +210,60 @@ public class rquestMain {
           System.out.println("Player dodge = " + playerDodge);
           if (playerDodge >= 8) {
             encounterInfo = "Enemy miss!";
+            System.out.println(encounterInfo);
           } else {
             int damageDone = (int) (tileSet[i].encounter.getWeapon().getDamage() * modifier);
             encounterInfo = "Enemy hit! They do " + damageDone + " damage to you!";
+            System.out.println(encounterInfo);
             int playerHealth = playerCharacter.getHealth();
             playerHealth -= damageDone;
             playerCharacter.setHealth(playerHealth);
-            System.out.println("You have " + playerHealth + " health left!");
-
-            if (health <= 0) {
+            if (playerCharacter.getHealth() <= 0) {
               encounterInfo = "You have been defeated!";
               System.out.println(encounterInfo);
-              break;
+              System.exit(0);
             }
+            System.out.println("You have " + playerHealth + " health left!");
           }
+          
         }
 
       }
 
       if (tileSet[i].getType() == "event-neutral") {
+        tileSet[i].neutral.setVisited(true);
+        String eventType = tileSet[i].neutral.getEvent();
+        if (eventType.equals("flavor"))
+        {
+          int selector = (int) getRandomIntegerBetweenRange(0, flavorEventText.length - 1);
+          encounterInfo = flavorEventText[selector];
+        }
+        if (eventType.equals("nextTileHint"))
+        {
+          eventType = tileSet[i+1].getType();
 
+          if (eventType.equals("encounter"))
+          {
+            encounterInfo = "You see some footprints in the ground leading up the path ahead. You identify them as a " + tileSet[i+1].encounter.getSpecies() + "'s.";
+          }
+          if (eventType.equals("event-neutral"))
+          {
+            encounterInfo = "You do not see anything of note up the path ahead.";
+          }
+          if (eventType.equals("shop"))
+          {
+            encounterInfo = "You see a shop ahead with " +   tileSet[i+1].shop.numOfItems + " items.";
+          }
+          if (eventType.equals("event-good"))
+          {
+            encounterInfo = "There seems to be something mysterious ahead.";
+          }
+          if (eventType.equals("event-bad"))
+          {
+            encounterInfo = "There seems to be something mysterious ahead.";
+          }
+        }
+        System.out.println(encounterInfo);
       }
 
       if (tileSet[i].getType() == "event-good") {
@@ -274,7 +314,7 @@ public class rquestMain {
           String userChoice = cin.nextLine();
           if (userChoice.equals("Y")) {
             encounterInfo = "You decide to take the " + eventWeapon.getWeaponType() + ".";
-            if (playerCharacter.hasWeapon) {
+            if (playerCharacter.hasWeapon = true && !playerCharacter.getWeapon().getWeaponType().equals("fists")) {
               encounterInfo += " You drop your old " + playerCharacter.getWeapon().getWeaponType() + ".";
             }
             playerCharacter.setWeapon(eventWeapon);

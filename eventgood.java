@@ -15,17 +15,17 @@ public class eventgood
     {
         eventSelector = getRandomIntegerBetweenRange(1, 100);
 
-        if(eventSelector>0&&eventSelector<81)
+        if(eventSelector>=1&&eventSelector<=50)
+        {
+            eventType = "heal";
+        }
+        if(eventSelector>=51&&eventSelector<=80)
         {
             eventType = "item";
         }
-        if(eventSelector>80&&eventSelector<91)
+        if(eventSelector>=81&&eventSelector<=100)
         {
-            eventType = "item";
-        }
-        if(eventSelector>90&&eventSelector<101)
-        {
-            eventType = "item";
+            eventType = "powerup";
         } 
     }
 

@@ -4,7 +4,8 @@ public class eventneutral
     String eventType;
     int eventLength = eventList.length;
     double eventSelector;
-
+    boolean visited = false;
+    
     public static double getRandomIntegerBetweenRange(double min, double max){
         double x = (int)(Math.random()*((max-min)+1))+min;
         return x;
@@ -30,6 +31,17 @@ public class eventneutral
         eventType = newEvent;
         return newEvent;
     };
+
+    public boolean setVisited(boolean newVisited)
+    {
+        visited = newVisited;
+        return visited;
+    }
+
+    public boolean getVisited()
+    {
+        return visited;
+    }
 
     public String getInfo() {return "This is a neutral tile that has the event: "+ eventType;
     }

@@ -8,6 +8,7 @@ public class monster {
     int fnameLength = rquestMain.firstName.length;
     int lnameLength = rquestMain.lastName.length;
     int monsterSpeciesLength = rquestMain.monsterSpeciesList.length;
+    boolean visited = false;
     weapon currentWeapon;
 
     public monster(boolean carryingWeapon, weapon weapon) 
@@ -286,6 +287,17 @@ public class monster {
         species = newSpecies;
         return newSpecies;
     };
+
+    public boolean setVisited(boolean newVisited)
+    {
+        visited = newVisited;
+        return visited;
+    }
+
+    public boolean getVisited()
+    {
+        return visited;
+    }
 
     public String getInfo() 
     {
