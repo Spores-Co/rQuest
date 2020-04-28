@@ -14,7 +14,7 @@ public class rquestMain {
       "You stumble over something while walking down the road. Upon further inspection, you notice it's a ",
       "You come across a dead body. You notice a weapon still in its sheath. Upon inspection, you identify it as a " };
   static String[] powerupEventText = {
-      "You see a small opening near a cliff as you are walking. In order to further investigate, you quicky - yet clumsily - crawl inside. About halfway through, you scrape your arm on some stragely sharp glowing moss and decide to crawl out. As you exit the opening, you feel ",
+      "You see a small opening near a cliff as you are walking. In order to further investigate, you quicky - yet clumsily - crawl inside. A-bout halfway through, you scrape your arm on some stragely sharp glowing moss and decide to crawl out. As you exit the opening, you feel ",
       "You meet a traveler along the path you are walking down. They tell you they can improve a random stat for ",
       "As you walk through a rough patch of forest, you step on a crumpled up piece of paper. Do you read the paper? " };
   static String[] flavorEventText = { "You look around you and take in the scenery.",
