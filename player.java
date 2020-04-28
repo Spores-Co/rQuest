@@ -1,8 +1,9 @@
 public class player {
     String name, species;
-    int health;
-    double modifier, money, armor, agility;
+    int health, money;
+    double modifier, armor, agility;
     boolean hasWeapon;
+    weapon currentWeapon;
    
     int fnameLength = rquestMain.firstName.length;
     int lnameLength = rquestMain.lastName.length;
@@ -14,10 +15,15 @@ public class player {
     }
 
     public player() {
-        money = getRandomIntegerBetweenRange(20, 50);
+        money = (int)getRandomIntegerBetweenRange(20, 50);
         name = rquestMain.firstName[(int) (0 + fnameLength * Math.random())] + " "
                 + rquestMain.lastName[(int) (0 + lnameLength * Math.random())];
         species = rquestMain.speciesList[(int) (0 + speciesLength * Math.random())];
+        currentWeapon = new weapon();
+        currentWeapon.setWeaponType("fists");
+        currentWeapon.setDamage(getRandomIntegerBetweenRange(3, 5));
+        currentWeapon.setSize("medium");
+        currentWeapon.setCost(0);
 
         //pretty sure modifier is for damage, kinda forgot it's been a while
         //tradeoff for more damage is less agility
@@ -74,7 +80,7 @@ public class player {
         return modifier;
     };
 
-    public double getMoney() {
+    public int getMoney() {
         return money;
     };
 
@@ -87,8 +93,17 @@ public class player {
         return newHealth;
     };
 
-    public int setAgility(int newAgility) {
-        health = newAgility;
+    public weapon setWeapon(weapon newWeapon) {
+        currentWeapon = newWeapon;
+        return newWeapon;
+    };
+
+    public weapon getWeapon() {
+        return currentWeapon;
+    };
+
+    public double setAgility(double newAgility) {
+        agility = newAgility;
         return newAgility;
     };
 
@@ -97,9 +112,9 @@ public class player {
         return newModifier;
     };
 
-    public double setMoney(double newMoney) {
+    public int setMoney(int newMoney) {
         money = newMoney;
-        return newMoney;
+        return money;
     };
 
     public String setName(String newName) {
@@ -110,6 +125,15 @@ public class player {
     public String setSpecies(String newSpecies) {
         species = newSpecies;
         return newSpecies;
+    };
+
+    public boolean setHasWeapon(boolean newHasWeapon) {
+        hasWeapon= newHasWeapon;
+        return hasWeapon;
+    };
+
+    public boolean getHasWeapon() {
+        return hasWeapon;
     };
 
     public String getInfo() {
