@@ -10,13 +10,16 @@ public class rquestMain {
       "A traveler walks up to you and shows you their wares. " };
   static String[] healEventText = { "You trip over a half-consumed healing potion and decide to drink it. ",
       "As you walk down the path, you notice a bush with fruit growing from it. Do you eat the fruit? " };
+  static String[] damageEventText = { "You trip over a stone. ",
+  "As you walk down the path, you notice a bush with fruit growing from it. Do you eat the fruit? " };
   static String[] itemEventText = {
       "You stumble over something while walking down the road. Upon further inspection, you notice it's a ",
       "You come across a dead body. You notice a weapon still in its sheath. Upon inspection, you identify it as a " };
   static String[] powerupEventText = {
-      "You see a small opening near a cliff as you are walking. In order to further investigate, you quicky - yet clumsily - crawl inside. A-bout halfway through, you scrape your arm on some stragely sharp glowing moss and decide to crawl out. As you exit the opening, you feel ",
+      "You see a small opening near a cliff as you are walking. In order to further investigate, you quicky - yet clumsily - crawl inside. About halfway through, you scrape your arm on some stragely sharp glowing moss and decide to crawl out. As you exit the opening, you feel ",
       "You meet a traveler along the path you are walking down. They tell you they can improve a random stat for ",
       "As you walk through a rough patch of forest, you step on a crumpled up piece of paper. Do you read the paper? " };
+  static String[] powerdownEventText = powerupEventText; //same as powerup text because there is a chance a "powerup" is actually a powerdown
   static String[] flavorEventText = { "You look around you and take in the scenery.",
       "You feel the breeze blow through your hair." };
   static questTile[] tileSet = new questTile[numOfTiles];
@@ -151,11 +154,13 @@ public class rquestMain {
 
   public static void playGame(questTile[] tileSet) {
     for (int i = 0; i < tileSet.length; i++) {
-       System.out.println("Tile = " + tileSet[i].getType());
-
-      if (tileSet[i].getType() == "encounter") {
+      System.out.println("----------------------------------------------------------------------------------------------");
+      System.out.println("Tile = " + tileSet[i].getType());
+      if (tileSet[i].getType() == "encounter")  //COMBAT ----------------------------------------------------------------------------------------------------------------------------
+      {
         tileSet[i].encounter.setVisited(true);
         boolean encounterComplete = false;
+        System.out.println("----------------------------------------------------------------------------------------------");
         String species = tileSet[i].encounter.getSpecies();
         String name = tileSet[i].encounter.getName();
         int health = tileSet[i].encounter.getHealth();
@@ -168,7 +173,7 @@ public class rquestMain {
         }
         System.out.println(encounterInfo);
         while (!encounterComplete) {
-
+          System.out.println("----------------------------------------------------------------------------------------------");
           encounterInfo = "What will you do?";
           Scanner cin = new Scanner(System.in);
           System.out.print(encounterInfo + "\nEnter your action: F = fight, R = run: ");
@@ -228,12 +233,10 @@ public class rquestMain {
             }
             System.out.println("You have " + playerHealth + " health left!");
           }
-
         }
-
       }
-
-      if (tileSet[i].getType() == "event-neutral") {
+      if (tileSet[i].getType() == "event-neutral") //NEUTRAL ---------------------------------------------------------------------------------------------------------------------
+      {
         tileSet[i].neutral.setVisited(true);
         String eventType = tileSet[i].neutral.getEvent();
         if (eventType.equals("flavor")) {
@@ -263,7 +266,7 @@ public class rquestMain {
         System.out.println(encounterInfo);
       }
 
-      if (tileSet[i].getType() == "event-good") 
+      if (tileSet[i].getType() == "event-good") //GOOD ----------------------------------------------------------------------------------------------------------------------------
       {
         tileSet[i].good.setVisited(true);
         String eventType = tileSet[i].good.getEvent();
@@ -296,11 +299,8 @@ public class rquestMain {
                 + " health!";
             System.out.println(encounterInfo);
           }
-
         }
-
-        if (eventType.equals("item")) 
-        {
+        if (eventType.equals("item")) {
           int selector = (int) getRandomIntegerBetweenRange(0, itemEventText.length - 1);
           weapon eventWeapon = weapons[i];
           int damage = (int) eventWeapon.getDamage();
@@ -375,7 +375,6 @@ public class rquestMain {
               encounterInfo = "You decline and move on.";
               System.out.println(encounterInfo);
             }
-
           }
           if (selector == 2)// this if is for yes/no
           {
@@ -436,84 +435,208 @@ public class rquestMain {
                   + " points. You now have an agility score of " + playerCharacter.getAgility() + ". ";
             }
             System.out.println(encounterInfo);
-
           }
         }
-
-        
       }
-      if (tileSet[i].getType() == "shop") 
-        {
-          int selector = (int) getRandomIntegerBetweenRange(0, shopEventText.length - 1);
-          encounterInfo = shopEventText[selector] + "The shop is currently selling " + tileSet[i].shop.numOfItems
-              + " items. ";
+      if (tileSet[i].getType() == "shop") //SHOP ----------------------------------------------------------------------------------------------------------------------------
+      {
+        int selector = (int) getRandomIntegerBetweenRange(0, shopEventText.length - 1);
+        encounterInfo = shopEventText[selector] + "The shop is currently selling " + tileSet[i].shop.numOfItems
+            + " items. You have " + playerCharacter.getMoney() + " gold to spend.";
+        System.out.println(encounterInfo);
+        for (int j = 0; j <= tileSet[i].shop.numOfItems - 1; j++) {
+          encounterInfo = "Item " + (j + 1) + " - Weapon Type: " + tileSet[i].shop.sellList[j].getWeaponType()
+              + " | Weapon Damage: " + tileSet[i].shop.sellList[j].getDamage() + " | Size: "
+              + tileSet[i].shop.sellList[j].getSize() + " | Cost: " + tileSet[i].shop.sellList[j].getCost();
           System.out.println(encounterInfo);
-          for (int j = 0; j <= tileSet[i].shop.numOfItems-1; j++) 
-          {
-            encounterInfo = "Item " + (j + 1) + "- Weapon Type: " + tileSet[i].shop.sellList[j].getWeaponType()
-                + "| Weapon Damage: " + tileSet[i].shop.sellList[j].getDamage() + "| Size: "
-                + tileSet[i].shop.sellList[j].getSize() + "| Cost: " + tileSet[i].shop.sellList[j].getCost();
-            System.out.println(encounterInfo);
-          }
-          while (true) {
-            Scanner cin = new Scanner(System.in);
-            encounterInfo = "Would you like to buy a weapon? ";
+        }
+        while (true) {
+          Scanner cin = new Scanner(System.in);
+          encounterInfo = "Would you like to buy a weapon? ";
+          System.out.print(encounterInfo);
+          String userChoice = cin.nextLine();
+          if (userChoice.equals("Y")) {
+            encounterInfo = "Which weapon? (Enter Number): ";
             System.out.print(encounterInfo);
+            int weaponChoice = cin.nextInt();
+            if ((weaponChoice > -1 && weaponChoice <= tileSet[i].shop.numOfItems)) {
+              if (playerCharacter.getMoney() - tileSet[i].shop.sellList[weaponChoice - 1].getCost() <= 0) {
+                encounterInfo = "Not Enough Cash!";
+                System.out.println(encounterInfo);
+                userChoice = "";
+              } else {
+                playerCharacter
+                    .setMoney(playerCharacter.getMoney() - tileSet[i].shop.sellList[weaponChoice - 1].getCost());
+                encounterInfo = "You decide to take the " + tileSet[i].shop.sellList[weaponChoice - 1].getWeaponType()
+                    + ". You give the shopkeeper " + tileSet[i].shop.sellList[weaponChoice - 1].getCost()
+                    + " gold. You have " + playerCharacter.getMoney() + " gold left.";
+                if (playerCharacter.hasWeapon = true && !playerCharacter.getWeapon().getWeaponType().equals("fists")) {
+                  encounterInfo += " You drop your old " + playerCharacter.getWeapon().getWeaponType() + ".";
+                }
+                encounterInfo += " You leave the shop.";
+                playerCharacter.setWeapon(tileSet[i].shop.sellList[weaponChoice - 1]);
+                System.out.println(encounterInfo);
+                break;
+              }
+            }
+            else 
+            {
+              encounterInfo = "Invalid Weapon";
+              System.out.println(encounterInfo);
+            }
+          }
+          if (userChoice.equals("N")) {
+            encounterInfo = " You leave the shop.";
+            System.out.println(encounterInfo);
+            break;
+          }
+        }
+      }
+
+      if (tileSet[i].getType() == "event-bad") //BAD ----------------------------------------------------------------------------------------------------------------------------
+      {
+        tileSet[i].bad.setVisited(true);
+        String eventType = tileSet[i].bad.getEvent();
+        if (eventType.equals("damage")) 
+        {
+          int selector = (int) getRandomIntegerBetweenRange(0, damageEventText.length - 1);
+          encounterInfo = damageEventText[selector];
+          if (selector == 1) // for choice events, add || for new events
+          {
+            System.out.print(encounterInfo);
+            Scanner cin = new Scanner(System.in);
             String userChoice = cin.nextLine();
             if (userChoice.equals("Y")) {
-
-              encounterInfo = "Which weapon? (Enter Number): ";
-              System.out.print(encounterInfo);
-              int weaponChoice = cin.nextInt();
-              if (!(weaponChoice > -1 && weaponChoice < tileSet[i].shop.numOfItems)) {
-                encounterInfo = "Invalid Weapon";
-                System.out.println(encounterInfo);
-
-              }
-
-              else 
-              {
-                if (playerCharacter.getMoney() - tileSet[i].shop.sellList[weaponChoice - 1].getCost() <= 0) {
-                  encounterInfo = "Not Enough Cash!";
-                  System.out.println(encounterInfo);
-                  userChoice = "";
-                } 
-                else 
-                {
-                  playerCharacter.setMoney(playerCharacter.getMoney() - tileSet[i].shop.sellList[weaponChoice - 1].getCost());
-                  encounterInfo = "You decide to take the " + tileSet[i].shop.sellList[weaponChoice - 1].getWeaponType()
-                      + ". You give the shopkeeper " + tileSet[i].shop.sellList[weaponChoice - 1].getCost() + " gold. You have " + playerCharacter.getMoney() + " gold left.";
-                  if (playerCharacter.hasWeapon = true
-                      && !playerCharacter.getWeapon().getWeaponType().equals("fists")) {
-                    encounterInfo += " You drop your old " + playerCharacter.getWeapon().getWeaponType() + ".";
-                  }
-                  encounterInfo += " You leave the shop.";
-                  playerCharacter.setWeapon(tileSet[i].shop.sellList[weaponChoice - 1]);
-                  System.out.println(encounterInfo);
-                  break;
-                }
-
-              }
-
-            }
-
-            if (userChoice.equals("N")) {
-              encounterInfo = " You leave the shop.";
+              encounterInfo = "You decide to. ";
+              int amountToDamage = (int) getRandomIntegerBetweenRange(0, 15);
+              int newPlayerHealth = playerCharacter.getHealth() - amountToDamage;
+              playerCharacter.setHealth(newPlayerHealth);
+              encounterInfo += "You lose " + amountToDamage + " health! You now have " + playerCharacter.getHealth()
+                  + " health!";
               System.out.println(encounterInfo);
-              break;
-
             }
-
+            if (userChoice.equals("N")) {
+              encounterInfo = "You decide not to. You walk away.";
+              System.out.println(encounterInfo);
+            }
+          } 
+          else //static damage 
+          {
+            int amountToDamage = (int) getRandomIntegerBetweenRange(1, 15);
+            int newPlayerHealth = playerCharacter.getHealth() - amountToDamage;
+            playerCharacter.setHealth(newPlayerHealth);
+            encounterInfo += "You lose " + amountToDamage + " health! You now have " + playerCharacter.getHealth()
+                + " health!";
+            System.out.println(encounterInfo);
           }
-
         }
 
-      if (tileSet[i].getType() == "event-bad") 
-      {
+        if (eventType.equals("powerdown")) 
+        {
+          int selector = (int) getRandomIntegerBetweenRange(0, powerdownEventText.length - 1);
+          encounterInfo = powerdownEventText[selector];
+          if (selector == 1)// this if is for bought powerups
+          {
+            int gold = (int) getRandomIntegerBetweenRange(5, 15);
+            encounterInfo += gold + " gold. Do you accept? ";
+            System.out.print(encounterInfo);
+            Scanner cin = new Scanner(System.in);
+            String userChoice = cin.nextLine();
+            if (userChoice.equals("Y")) {
+              int playerGold = playerCharacter.getMoney();
+              if (playerGold - gold <= 0) {
+                encounterInfo = "The traveler takes your gold anyways and runs away. You lose " + playerCharacter.getMoney() + " gold, and are now broke.";
+                playerCharacter.setMoney(0);
+                System.out.println(encounterInfo);
+              } else 
+              {
+                encounterInfo = "The traveler takes the gold and runs away. You lose " + gold + " gold. You now have " + (playerCharacter.getMoney() - gold) + " gold.";
+                playerCharacter.setMoney(playerCharacter.getMoney() - gold);
+                System.out.println(encounterInfo);
+              }
+            }
+            if (userChoice.equals("N")) {
+              encounterInfo = "You decline and move on.";
+              System.out.println(encounterInfo);
+            }
+          }
+          if (selector == 2)// this if is for yes/no
+          {
+            System.out.print(encounterInfo);
+            Scanner cin = new Scanner(System.in);
+            String userChoice = cin.nextLine();
+            if (userChoice.equals("Y")) {
+              selector = (int) getRandomIntegerBetweenRange(0, 2);
+              if (selector == 0) {
+                int loseHealth = (int) getRandomIntegerBetweenRange(5, 20);
+                playerCharacter.setHealth(playerCharacter.getHealth() - loseHealth);
+                encounterInfo = "Mystical power enters your veins, making you feel sick to your stomach. Your health decreases by "
+                    + loseHealth + " points. You now have " + playerCharacter.getHealth() + " health. ";
 
+              }
+              if (selector == 1) {
+                double loseModifier = round(getRandomDoubleBetweenRange(.2, .7), 2);
+                playerCharacter.setModifier(playerCharacter.getModifier() - loseModifier);
+                encounterInfo = "You begin to feel weaker than before. Your damage modifier decreases by "
+                    + loseModifier + " points. You now have a damage modifier of " + playerCharacter.getModifier()
+                    + ". ";
+
+              }
+              if (selector == 2) {
+                double loseAgility = round(getRandomDoubleBetweenRange(.2, .5), 2);
+                playerCharacter.setAgility(playerCharacter.getAgility() - loseAgility);
+                encounterInfo = "You begin to feel sluggish. Your agility score decreases by "
+                    + loseAgility + " points. You now have an agility score of " + playerCharacter.getAgility() + ". ";
+              }
+              System.out.println(encounterInfo);
+            }
+            if (userChoice.equals("N")) {
+              encounterInfo = "You decide not to and move on";
+              System.out.println(encounterInfo);
+            }
+          } 
+          else // this is for static powerdowns
+          {
+            selector = (int) getRandomIntegerBetweenRange(0, 2);
+            if (selector == 0) {
+              int loseHealth = (int) getRandomIntegerBetweenRange(5, 20);
+              playerCharacter.setHealth(playerCharacter.getHealth() - loseHealth);
+              encounterInfo += " You feel sick. Your health decreases by " + loseHealth + " points. You now have "
+                  + playerCharacter.getHealth() + " health. ";
+
+            }
+            if (selector == 1) {
+              double loseModifier = round(getRandomDoubleBetweenRange(.2, .7), 2);
+              playerCharacter.setModifier(playerCharacter.getModifier() - loseModifier);
+              encounterInfo += " Your sword-arm feels sore. Your damage modifier decreases by " + loseModifier
+                  + " points. You now have a damage modifier of " + playerCharacter.getModifier() + ". ";
+
+            }
+            if (selector == 2) {
+              double loseAgility = round(getRandomDoubleBetweenRange(.2, .5), 2);
+              playerCharacter.setAgility(playerCharacter.getAgility() - loseAgility);
+              encounterInfo += " You begin to feel heavier. Your agility score decreases by " + loseAgility
+                  + " points. You now have an agility score of " + playerCharacter.getAgility() + ". ";
+            }
+            System.out.println(encounterInfo);
+
+          }
+          if (playerCharacter.getHealth() <= 0) {
+            encounterInfo = "You have been defeated!";
+            System.out.println(encounterInfo);
+            System.exit(0);
+          }
+          if (playerCharacter.getModifier() <= 0) {
+            System.out.println("Modifier reset to 0.3");
+            playerCharacter.setModifier(.3);
+          }
+          if (playerCharacter.getAgility() <= 0) {
+            System.out.println("Agility reset to 0.3");
+            playerCharacter.setAgility(.3);
+          }
+        }
       }
     }
-    
   }
 
   public static void main(String[] args) {
