@@ -1,5 +1,7 @@
-import java.util.Scanner;
+
 import java.math.*;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 public class rquestMain {
   static player playerCharacter;
@@ -152,8 +154,10 @@ public class rquestMain {
     }
   }
 
-  public static void playGame(questTile[] tileSet) {
+  public static void playGame(questTile[] tileSet)  throws InterruptedException{
     for (int i = 0; i < tileSet.length; i++) {
+      System.out.println("SLEEP");
+      TimeUnit.SECONDS.sleep(1);
       System.out.println("----------------------------------------------------------------------------------------------");
       System.out.println("Tile = " + tileSet[i].getType());
       if (tileSet[i].getType() == "encounter")  //COMBAT ----------------------------------------------------------------------------------------------------------------------------
@@ -639,7 +643,8 @@ public class rquestMain {
     }
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws InterruptedException
+  { 
     monster[] monsters = new monster[numOfTiles];
     eventgood[] eventgood = new eventgood[numOfTiles];
     eventbad[] eventbad = new eventbad[numOfTiles];
@@ -655,5 +660,6 @@ public class rquestMain {
     generateShop(shops, weapons);
     generateTiles(tileSet, monsters, eventgood, eventbad, eventneutral, shops);
     playGame(tileSet);
+    
   }
 }
