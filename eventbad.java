@@ -1,5 +1,6 @@
 public class eventbad
 {
+    boolean tileDefeated = false;
     String[] eventList = {"damage", "powerdown"};
     String eventType;
     int eventLength = eventList.length;

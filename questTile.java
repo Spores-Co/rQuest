@@ -9,6 +9,7 @@ public class questTile
     eventbad bad;
     eventneutral neutral;
     shop shop;
+    boolean tileDefeated = false;
 
     public static double getRandomIntegerBetweenRange(double min, double max){
         double x = (int)(Math.random()*((max-min)+1))+min;
@@ -58,6 +59,15 @@ public class questTile
     public String setType(String newType) {
         tileType = newType;
         return newType;
+    };
+
+    public boolean getDefeated() {
+        return tileDefeated;
+    };
+
+    public boolean setDefeated(boolean changeDefeated) {
+        tileDefeated = changeDefeated;
+        return tileDefeated;
     };
 
     public monster getEncounter() {

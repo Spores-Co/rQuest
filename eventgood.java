@@ -1,5 +1,6 @@
 public class eventgood
 {
+
     String[] eventList = {"heal", "item", "powerup"};
     String eventType;
     int eventLength = eventList.length;

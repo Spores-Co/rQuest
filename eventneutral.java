@@ -1,5 +1,6 @@
 public class eventneutral
 {
+
     String[] eventList = {"flavor", "nextTileHint"};
     String eventType;
     int eventLength = eventList.length;
