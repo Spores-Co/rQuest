@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">rQuest</string>
+    <string name="rquest">rQuest</string>
+    <string name="encountertext">encounterText</string>
+</resources>
