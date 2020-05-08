@@ -1,33 +1,29 @@
-public class eventgood
+public class eventneutral
 {
 
-    String[] eventList = {"heal", "item", "powerup"};
+    String[] eventList = {"flavor", "nextTileHint"};
     String eventType;
     int eventLength = eventList.length;
     double eventSelector;
     boolean visited = false;
-
+    
     public static double getRandomIntegerBetweenRange(double min, double max){
         double x = (int)(Math.random()*((max-min)+1))+min;
         return x;
     }
 
-    public eventgood()
+    public eventneutral()
     {
         eventSelector = getRandomIntegerBetweenRange(1, 100);
 
-        if(eventSelector>=1&&eventSelector<=50)
+        if(eventSelector>0&&eventSelector<51)
         {
-            eventType = "heal";
+            eventType = "flavor";
         }
-        if(eventSelector>=51&&eventSelector<=80)
+        if(eventSelector>50&&eventSelector<101)
         {
-            eventType = "item";
+            eventType = "nextTileHint";
         }
-        if(eventSelector>=81&&eventSelector<=100)
-        {
-            eventType = "powerup";
-        } 
     }
 
     public String getEvent(){return eventType;}
@@ -37,17 +33,17 @@ public class eventgood
         return newEvent;
     };
 
-    public boolean getVisited()
-    {
-        return visited;
-    }
-
     public boolean setVisited(boolean newVisited)
     {
         visited = newVisited;
         return visited;
     }
 
-    public String getInfo() {return "This is a good tile that has the event: "+ eventType;
+    public boolean getVisited()
+    {
+        return visited;
+    }
+
+    public String getInfo() {return "This is a neutral tile that has the event: "+ eventType;
     }
 }

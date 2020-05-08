@@ -1,5 +1,6 @@
 public class shop
 {
+    
     int numOfItems = (int)getRandomIntegerBetweenRange(1, 3);
 
     public static double getRandomIntegerBetweenRange(double min, double max){
