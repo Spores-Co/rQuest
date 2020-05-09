@@ -49,7 +49,7 @@ public class rquestMain {
   static String[] lastName = { "the parallel", "the juvenile", "the subdued", "the squalid", "the violent",
       "the fretful", "the powerful", "the wary", "the broad", "the ludicrous", "the dizzy", "the intelligent",
       "the grotesque", "the annoying", "the wealthy", "the puny", "the bizarre", "the learned", "the cumbersome",
-      "the chilly", "the resolute", "the juvinile", "the frantic", "the industrious", "the hellish", "the puzzled" };
+      "the chilly", "the resolute", "the juvenile", "the frantic", "the industrious", "the hellish", "the puzzled" };
 
   public static double getRandomIntegerBetweenRange(double min, double max) {
     double x = (int) (Math.random() * ((max - min) + 1)) + min;
