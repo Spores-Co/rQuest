@@ -7,6 +7,7 @@ public class player {
     boolean hasWeapon;
     weapon currentWeapon;
     String[] skills;
+    int skillLengthHolder;
    
     int fnameLength = rquestMain.firstName.length;
     int lnameLength = rquestMain.lastName.length;
@@ -18,7 +19,8 @@ public class player {
     }
 
     public player(String race, int skillLength) {
-        skills = new String[skillLength];
+        skillLengthHolder = skillLength;
+        skills = new String[skillLengthHolder];
         money = (int)getRandomIntegerBetweenRange(20, 50);
         name = rquestMain.firstName[(int) (0 + fnameLength * Math.random())] + " "
                 + rquestMain.lastName[(int) (0 + lnameLength * Math.random())];
@@ -146,10 +148,21 @@ public class player {
         return skills[skillNumber];
     }
 
+    public void getAllSkills()
+    {
+        for(int i = 0; i<skillLengthHolder; i++)
+        {
+            System.out.println("Skill " + i + " = " + skills[i]);
+        }
+
+    }
+
     public void setSkill(int skillNumber, String skill)
     {
        skills[skillNumber] = skill;
     }
+
+    public int getSkillsLength(){return skillLengthHolder;}
 
     public String getInfo() {
         return "This player is a " + species + " named " + name + " with " + health + " hitpoints, " + agility + " agility, " + money

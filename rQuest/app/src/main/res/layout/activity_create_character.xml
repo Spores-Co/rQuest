@@ -7,219 +7,226 @@
     tools:context=".createCharacter">
 
 
-    <TextView
-        android:id="@+id/label_choose_race"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Choose Race:"
-        android:textAlignment="center"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <TextView
-        android:id="@+id/label_skills"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="Choose # Skills:"
-        android:textAlignment="center"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="187dp"
-        android:layout_height="203dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="4dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <CheckBox
-                android:id="@+id/weaponsmith"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="Weaponsmith" />
-
-            <CheckBox
-                android:id="@+id/tough_skin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="Tough Skin" />
-
-            <CheckBox
-                android:id="@+id/slippery"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="Slippery" />
-
-            <CheckBox
-                android:id="@+id/one_with_nature"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="One with Nature" />
-
-            <CheckBox
-                android:id="@+id/sixth_sense"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="Sixth Sense" />
-
-            <CheckBox
-                android:id="@+id/heavy_weapons"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="Heavy Weapons" />
-
-            <CheckBox
-                android:id="@+id/sword_master"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="Sword Master" />
-
-            <CheckBox
-                android:id="@+id/dagger_master"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="Dagger Master" />
-
-            <CheckBox
-                android:id="@+id/blunt_weapons_master"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="Blunt Weapons Master" />
-
-        </LinearLayout>
-
-
-    </ScrollView>
-
-    <ScrollView
-        android:id="@+id/race_scrollview"
-        android:layout_width="132dp"
-        android:layout_height="214dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/label_skills"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/label_choose_race"
-        app:layout_constraintVertical_bias="0.0">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <CheckBox
-                android:id="@+id/human"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="8dp"
-                android:onClick="setPlayerRace"
-                android:tag="human"
-                android:text="Human" />
-
-            <CheckBox
-                android:id="@+id/orc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="8dp"
-                android:onClick="setPlayerRace"
-                android:tag="orc"
-                android:text="Orc" />
-
-            <CheckBox
-                android:id="@+id/elf"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="8dp"
-                android:onClick="setPlayerRace"
-                android:tag="elf"
-                android:text="Elf" />
-
-            <CheckBox
-                android:id="@+id/gnome"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="8dp"
-                android:onClick="setPlayerRace"
-                android:tag="gnome"
-                android:text="Gnome" />
-
-            <CheckBox
-                android:id="@+id/dragonborn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="8dp"
-                android:onClick="setPlayerRace"
-                android:tag="dragonborn"
-                android:text="Dragonborn" />
-
-            <CheckBox
-                android:id="@+id/dwarf"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="8dp"
-                android:onClick="setPlayerRace"
-                android:tag="dwarf"
-                android:text="Dwarf" />
-        </LinearLayout>
-    </ScrollView>
-
-    <Button
-        android:id="@+id/button"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Play"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:onClick="launchSecondActivity"/>
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/label_choose_race"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Choose Race"
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.036"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <CheckBox
+                    android:id="@+id/human"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:onClick="setPlayerRace"
+                    android:tag="human"
+                    android:text="Human" />
+
+                <CheckBox
+                    android:id="@+id/orc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:onClick="setPlayerRace"
+                    android:tag="orc"
+                    android:text="Orc" />
 
 
+                <CheckBox
+                    android:id="@+id/elf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:onClick="setPlayerRace"
+                    android:tag="elf"
+                    android:text="Elf" />
+
+                <CheckBox
+                    android:id="@+id/gnome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:onClick="setPlayerRace"
+                    android:tag="gnome"
+                    android:text="Gnome" />
+
+                <CheckBox
+                    android:id="@+id/dragonborn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:onClick="setPlayerRace"
+                    android:tag="dragonborn"
+                    android:text="Dragonborn" />
+
+                <CheckBox
+                    android:id="@+id/dwarf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:onClick="setPlayerRace"
+                    android:tag="dwarf"
+                    android:text="Dwarf" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/label_skills"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Choose # Skills"
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/label_choose_race" />
+
+                <CheckBox
+                    android:id="@+id/weaponsmith"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:onClick="fillSkillArray"
+                    android:tag="weaponsmith"
+                    android:text="Weaponsmith" />
+
+                <CheckBox
+                    android:id="@+id/tough_skin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:onClick="fillSkillArray"
+                    android:tag="tough_skin"
+                    android:text="Tough Skin" />
+
+                <CheckBox
+                    android:id="@+id/slippery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:onClick="fillSkillArray"
+                    android:tag="slippery"
+                    android:text="Slippery" />
+
+                <CheckBox
+                    android:id="@+id/one_with_nature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:onClick="fillSkillArray"
+                    android:tag="one_with_nature"
+                    android:text="One with Nature" />
+
+                <CheckBox
+                    android:id="@+id/sixth_sense"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:onClick="fillSkillArray"
+                    android:tag="sixth_sense"
+                    android:text="Sixth Sense" />
+
+                <CheckBox
+                    android:id="@+id/heavy_weapons"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:onClick="fillSkillArray"
+                    android:tag="heavy_weapons"
+                    android:text="Heavy Weapons" />
+
+                <CheckBox
+                    android:id="@+id/sword_master"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:onClick="fillSkillArray"
+                    android:tag="sword_master"
+                    android:text="Sword Master" />
+
+                <CheckBox
+                    android:id="@+id/dagger_master"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:onClick="fillSkillArray"
+                    android:tag="dagger_master"
+                    android:text="Dagger Master" />
+
+                <CheckBox
+                    android:id="@+id/blunt_weapons_master"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:onClick="fillSkillArray"
+                    android:tag="blunt_weapons_master"
+                    android:text="Blunt Weapons Master" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/play_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:onClick="launchSecondActivity"
+                android:tag="disabled"
+                android:text="Play"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
