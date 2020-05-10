@@ -6,4 +6,94 @@
     android:layout_height="match_parent"
     tools:context=".openShop">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/info_item_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ITEM 1"
+                    android:layout_marginEnd="32dp"
+                    app:layout_constraintEnd_toStartOf="@+id/buy_item_1"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <Button
+                    android:id="@+id/buy_item_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Buy 1"
+                    android:onClick="buyitem"
+                    android:tag="1"/>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/info_item_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ITEM 2"
+                    android:layout_marginEnd="32dp"/>
+
+                <Button
+                    android:id="@+id/buy_item_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Buy 2"
+                    android:onClick="buyitem"
+                    android:tag="2"/>
+
+            </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/info_item_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ITEM 3"
+                android:layout_marginEnd="32dp"/>
+
+            <Button
+                android:id="@+id/buy_item_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Buy 3"
+                android:onClick="buyitem"
+                android:tag="3"/>
+
+        </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
