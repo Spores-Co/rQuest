@@ -29,8 +29,6 @@ public class openShop extends AppCompatActivity {
         {
             disableBuyButtons();
         }
-
-
     }
 
     public void updatePlayerStats() {
@@ -42,10 +40,7 @@ public class openShop extends AppCompatActivity {
         playerCurrentHealth.setText(currentHealth);
         playerWeapon.setText(rquestMain.playerCharacter.getWeapon().getWeaponType());
         playerGold.setText(gold);
-
     }
-
-
 
     public void buyItem(View view)
     {
