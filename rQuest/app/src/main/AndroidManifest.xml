@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".createCharacter"></activity>
+        <activity android:name=".openShop"></activity>
+        <activity android:name=".createCharacter" />
         <activity android:name=".game" />
         <activity android:name=".MainActivity">
             <intent-filter>

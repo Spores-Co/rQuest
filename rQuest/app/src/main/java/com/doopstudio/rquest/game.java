@@ -22,8 +22,6 @@ public class game extends AppCompatActivity {
 
     }
 
-
-
     public void disableNext()
     {
         final Button nextButton = (Button) findViewById(R.id.button_next);
@@ -446,6 +444,11 @@ public class game extends AppCompatActivity {
         set_new_encounter_info();
         updatePlayerStats();
         scrollToBottom();
+
+    }
+
+    public void openShop(View view) {
+
 
     }
 }
