@@ -6,8 +6,10 @@ import java.util.concurrent.TimeUnit;
 
 public class rquestMain {
   static player playerCharacter;
+  static boolean itemBought = false;
   static int skillLength;
   static int enemyMaxHealth;
+  static String playerMaxHealth;
   static weapon eventWeapon;
   static int gold = 0;
   static int weaponChoice=1;

@@ -21,28 +21,58 @@ public class openShop extends AppCompatActivity {
         addBuyItemButtonsToArray();
         setItemText();
         disableUnusedItems();
+        updatePlayerStats();
+        TextView playerMaxHealth = findViewById(R.id.player_max_health);
+        String maxHealth = String.valueOf(rquestMain.playerMaxHealth);
+        playerMaxHealth.setText(maxHealth);
+        if(rquestMain.itemBought)
+        {
+            disableBuyButtons();
+        }
     }
 
-    public void buyitem(View view)
+    public void updatePlayerStats() {
+        final TextView playerCurrentHealth = (TextView) findViewById(R.id.player_current_health);
+        final TextView playerGold = (TextView) findViewById(R.id.player_gold);
+        final TextView playerWeapon = (TextView) findViewById(R.id.player_current_weapon);
+        String currentHealth = String.valueOf(rquestMain.playerCharacter.getHealth());
+        String gold = String.valueOf(rquestMain.playerCharacter.getMoney());
+        playerCurrentHealth.setText(currentHealth);
+        playerWeapon.setText(rquestMain.playerCharacter.getWeapon().getWeaponType());
+        playerGold.setText(gold);
+
+    }
+
+    public void buyItem(View view)
     {
+        int gold = rquestMain.playerCharacter.getMoney();
         if(view.getTag().equals("1"))
         {
-            rquestMain.playerCharacter.setWeapon(rquestMain.currentTile.shop.sellList[0]);
+            rquestMain.weaponChoice = 1;
+            rquestMain.selectWeapon(rquestMain.currentTile);
+            //rquestMain.playerCharacter.setWeapon(rquestMain.currentTile.shop.sellList[0]);
             System.out.println("Player weapon set to: " + rquestMain.currentTile.shop.sellList[0].getWeaponType());
             disableBuyButtons();
+
         }
         if(view.getTag().equals("2"))
         {
-            rquestMain.playerCharacter.setWeapon(rquestMain.currentTile.shop.sellList[1]);
+            rquestMain.weaponChoice = 2;
+            rquestMain.selectWeapon(rquestMain.currentTile);
+            //rquestMain.playerCharacter.setWeapon(rquestMain.currentTile.shop.sellList[1]);
             System.out.println("Player weapon set to: " + rquestMain.currentTile.shop.sellList[1].getWeaponType());
             disableBuyButtons();
         }
         if(view.getTag().equals("3"))
         {
-            rquestMain.playerCharacter.setWeapon(rquestMain.currentTile.shop.sellList[2]);
+            rquestMain.weaponChoice = 3;
+            rquestMain.selectWeapon(rquestMain.currentTile);
+            //rquestMain.playerCharacter.setWeapon(rquestMain.currentTile.shop.sellList[2]);
             System.out.println("Player weapon set to: " + rquestMain.currentTile.shop.sellList[2].getWeaponType());
             disableBuyButtons();
         }
+        rquestMain.itemBought = true;
+        updatePlayerStats();
 
     }
 

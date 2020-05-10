@@ -96,6 +96,7 @@ public class game extends AppCompatActivity {
         playerMaxHealth = findViewById(R.id.player_max_health);
         String maxHealth = String.valueOf(rquestMain.playerCharacter.getHealth());
         playerMaxHealth.setText(maxHealth);
+        rquestMain.playerMaxHealth = playerMaxHealth.getText().toString();
         final Button nextButton = (Button) findViewById(R.id.button_next);
         nextButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -196,6 +197,8 @@ public class game extends AppCompatActivity {
         final Button noButton = (Button) findViewById(R.id.button_no);
         final Button fightButton = (Button) findViewById(R.id.button_fight);
         final Button runButton = (Button) findViewById(R.id.button_run);
+        final Button shopButton = (Button) findViewById(R.id.button_shop);
+        shopButton.setEnabled(false);
         disableYesNo();
         disableFightRun();
         disableNext();
@@ -271,8 +274,18 @@ public class game extends AppCompatActivity {
             set_and_scroll();
         }
         if (buttonType == 4) {
-            enableYesNo();
-            yesButton.setOnClickListener(new View.OnClickListener() {
+            //enableYesNo();
+            rquestMain.itemBought = false;
+            shopButton.setEnabled(true);
+            shopButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    openShop();
+                    updatePlayerStats();
+                    enableNext();
+                    set_and_scroll();
+                }
+            });
+            /*yesButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     rquestMain.selectWeapon(rquestMain.currentTile);
                     updatePlayerStats();
@@ -289,7 +302,7 @@ public class game extends AppCompatActivity {
                     enableNext();
                     set_and_scroll();
                 }
-            });
+            });*/
             set_and_scroll();
         }
         if (buttonType == 5) {
@@ -448,7 +461,7 @@ public class game extends AppCompatActivity {
 
     }
 
-    public void openShop(View view) {
+    public void openShop() {
         Intent intent = new Intent(this, openShop.class); //creates the intent
         //String message = mMessageEditText.getText().toString(); //takes mMessageEditText and assigns it to a string
         //TEXT_REQUEST is the request code
