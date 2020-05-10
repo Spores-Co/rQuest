@@ -1,23 +1,18 @@
 package com.doopstudio.rquest;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Build;
 import android.os.Bundle;
-import android.transition.Explode;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
 public class openShop extends AppCompatActivity {
 
-    private int maxShopitems = 3;
-    public TextView[] item_info = new TextView[maxShopitems];
-    public Button[] buy_item_buttons = new Button[maxShopitems];
+    private int maxShopItems = 3;
+    public TextView[] item_info = new TextView[maxShopItems];
+    public Button[] buy_item_buttons = new Button[maxShopItems];
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,7 +82,7 @@ public class openShop extends AppCompatActivity {
 
     public void disableBuyButtons()
     {
-        for(int i = 0; i<maxShopitems; i++)
+        for(int i = 0; i< maxShopItems; i++)
         {
             buy_item_buttons[i].setEnabled(false);
         }
@@ -98,7 +93,7 @@ public class openShop extends AppCompatActivity {
         final Button buy_item_1 = findViewById(R.id.buy_item_1);
         final Button buy_item_2 = findViewById(R.id.buy_item_2);
         final Button buy_item_3 = findViewById(R.id.buy_item_3);
-        for(int i = 0; i<maxShopitems; i++)
+        for(int i = 0; i< maxShopItems; i++)
         {
             if(i==0)
             {
@@ -120,7 +115,7 @@ public class openShop extends AppCompatActivity {
         final TextView info_item_1 = findViewById(R.id.info_item_1);
         final TextView info_item_2 = findViewById(R.id.info_item_2);
         final TextView info_item_3 = findViewById(R.id.info_item_3);
-        for(int i = 0; i<maxShopitems; i++)
+        for(int i = 0; i< maxShopItems; i++)
         {
             if(i==0)
             {
