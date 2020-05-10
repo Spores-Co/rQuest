@@ -1,9 +1,13 @@
 package com.doopstudio.rquest;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.transition.Explode;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -13,6 +17,7 @@ public class openShop extends AppCompatActivity {
     public TextView[] item_info = new TextView[maxShopitems];
     public Button[] buy_item_buttons = new Button[maxShopitems];
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +34,8 @@ public class openShop extends AppCompatActivity {
         {
             disableBuyButtons();
         }
+
+
     }
 
     public void updatePlayerStats() {
@@ -42,6 +49,8 @@ public class openShop extends AppCompatActivity {
         playerGold.setText(gold);
 
     }
+
+
 
     public void buyItem(View view)
     {
